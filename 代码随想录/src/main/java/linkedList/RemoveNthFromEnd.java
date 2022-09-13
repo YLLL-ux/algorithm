@@ -10,28 +10,24 @@ public class RemoveNthFromEnd {
 
     // 双指针
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        // 设置虚拟头
-        ListNode dummy = new ListNode(0);
+        // 虚拟头节点
+        ListNode dummy = new ListNode(-1);
         dummy.next = head;
 
-        // 创建快慢指针，两个指针初始均指向dummy
         ListNode fast = dummy;
         ListNode slow = dummy;
 
-        // 遍历fast指针，知道遇到n
-        for (int i = 0; i < n; ++i) {
-            fast = fast.next;
-        }
+        // fast移动n+1
+        while (n-- > 0 && fast != null) fast = fast.next;
+        fast = fast.next; //让slow知道删除谁
 
-        // slow节点的上一节点，到时这个节点会直接指向slow的下一节点
-        ListNode prev = new ListNode();
+        // fast、slow同时移动
         while (fast != null) {
-            prev = slow;
             fast = fast.next;
             slow = slow.next;
         }
-        // 跳过slow
-        prev.next = slow.next;
+
+        slow.next = slow.next.next;
         return dummy.next;
     }
 }

@@ -33,9 +33,10 @@ public class GetIntersectionNode {
         // 让curA为最长链表的头，lenA为其长度
         if (lenB > lenA) {
             // swap (lenA,lenB)
-            int tempLen = lenA;
-            lenA = lenB;
-            lenB = tempLen;
+            lenA = lenA ^ lenB;
+            lenB = lenB ^ lenA;
+            lenA = lenA ^ lenB;
+
             // swap (curA,curB)
             ListNode tempNode = curA;
             curA = curB;

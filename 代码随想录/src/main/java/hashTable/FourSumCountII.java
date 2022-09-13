@@ -62,7 +62,8 @@ public class FourSumCountII {
             for (int l : nums4) {
                 int temp = k + l;
                 if (map.containsKey(-temp)) {
-                    record += map.get(-temp);
+                    Integer integer = map.get(-temp);
+                    record += integer;
                 }
             }
         }

@@ -26,15 +26,15 @@ public class SwapPairs {
     private ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode prev = dummy;
+        ListNode cur = dummy;
 
-        while (prev.next != null && prev.next.next != null) {
-            ListNode temp = head.next.next; // 缓存下一个head
-            prev.next = head.next;
-            head.next.next = head;
-            head.next = temp;
-            prev = head;
-            head = head.next;
+        while (cur.next != null && cur.next.next != null) {
+           ListNode temp_next_cur = cur.next;
+           ListNode temp_next_head = cur.next.next.next;
+
+           cur.next = cur.next.next;
+           cur.next.next = temp_next_cur;
+           temp_next_cur.next = temp_next_head;
         }
         return dummy.next;
     }

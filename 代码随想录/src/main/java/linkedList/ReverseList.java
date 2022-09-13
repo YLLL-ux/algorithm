@@ -13,9 +13,6 @@ package linkedList;
  **/
 
 public class ReverseList {
-    public static void main(String[] args) {
-
-    }
 
     // 双指针
     public ListNode reverseList(ListNode head) {

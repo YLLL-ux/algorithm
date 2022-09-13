@@ -30,10 +30,10 @@ import java.util.List;
 public class FourSum {
 
     public static void main(String[] args) {
-        int[] nums = {1, 0, -1, 0, -2, 2};
+        int[] nums = {-3, -2, -1, 0, 0, 1, 2, 3};
         int target = 0;
 
-        List<List<Integer>> lists = new FourSum().fourSum(nums, target);
+        List<List<Integer>> lists = new FourSum().fourSum_test(nums, target);
         System.out.println(lists);
     }
 
@@ -69,6 +69,40 @@ public class FourSum {
                         while (right > left && nums[left] == nums[left + 1]) left++;
 
                         // 左右指针移位
+                        left++;
+                        right--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<List<Integer>> fourSum_test(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+
+        for (int k = 0; k < nums.length; k++) {
+            if (nums[k] > target && target >= 0) return result;
+            if (k > 0 && nums[k] == nums[k - 1]) continue; //去重
+
+            for (int i = k + 1; i < nums.length; i++) {
+                if (nums[k] + nums[i] > target && nums[k] + nums[i] >= 0) return result;
+                if (i > k + 1 && nums[i] == nums[i - 1]) continue;
+
+                int left = i + 1;
+                int right = nums.length - 1;
+
+                while (left < right) {
+                    int sum = nums[k] + nums[i] + nums[left] + nums[right];
+                    if (sum < target) left++;
+                    else if (sum > target) right--;
+                    else {
+                        result.add(Arrays.asList(nums[k], nums[i], nums[left], nums[right]));
+
+                        while (left < right && nums[left] == nums[left + 1]) left++;
+                        while (left < right && nums[right] == nums[right - 1]) right--;
+
                         left++;
                         right--;
                     }

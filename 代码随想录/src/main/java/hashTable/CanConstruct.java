@@ -24,8 +24,8 @@ package hashTable;
 public class CanConstruct {
 
     public static void main(String[] args) {
-        String ransomNote = "a";
-        String magazine = "b";
+        String ransomNote = "aa";
+        String magazine = "aaab";
         boolean construct = new CanConstruct().canConstruct_hash(ransomNote, magazine);
         System.out.println(construct);
     }
